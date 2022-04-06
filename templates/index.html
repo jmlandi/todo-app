@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/neumorphism-ui.css">
+</head>
+<body class="dark-mode">
+  <!-- Início Div Formulário -->
+    <div class="sul-box-raised-2 container">
+      <h1>To Do List</h1>
+      <!-- Formulário de Criação -->
+      <form action="/create" method="POST">
+        <input class="sul-text-field" type="text" name="title">
+        <button class="sul-btn" type="submit">
+          Add
+        </button>
+      </form>
+      <!-- Exibição Formulário -->
+      <ul>
+        {% for i in todos %}
+          <li> 
+
+              {% if i.complete == True %}
+                <p class="item-txt"><s> {{ i.title }} </s></p>
+              {% else %}
+                <form action="/update/{{ loop.index0 }}" method="POST">
+                  <input class="sul-text-field" type="text" name="title" value="{{ i.title }}">
+                  <button class="sul-btn" type="submit">Edit</button>
+                </form> 
+              {% endif %}
+            <a href="/delete/{{ loop.index0 }}">
+                <p class="item-icon">❌</p>            
+              </a>
+              <a href="/complete/{{ loop.index0 }}">
+                <p class="item-icon">✅</p>
+              </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+</body>
+</html>
