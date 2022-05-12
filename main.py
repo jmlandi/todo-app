@@ -1,45 +1,59 @@
-from flask import Flask, render_template, request, redirect
+import os
+from flask import Flask
+from database import db
+from controllers import TodoController, UserController
+
+###### CONFIGURACOES ######
 app = Flask('app')
+app.config['SECRET_KEY'] = 'qEChL7R3SpF72cEA'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db.init_app(app)
 
-todos = [
-  { 'title': 'Example 1',
-    'complete': False
-  },
-  { 'title': 'Example 2', 
-    'complete': True
-  }
-]
-
+###### ROTAS ######
 @app.route('/')
 def index():
-  return render_template(
-    'index.html',
-    todos=todos
-  )
+  return TodoController.index()
 
 @app.route('/create', methods=['POST'])
 def create():
-  cat = request.form.get('category')
-  title = request.form.get('title')
-  todos.append({'title': title, 'complete': False, 'category': cat})
-  return redirect('/')
+  return TodoController.create()
 
 @app.route('/delete/<int:id>')
 def delete(id):
-  todos.pop(id)
-  return redirect('/')
+  return TodoController.delete(id)
 
 @app.route('/complete/<int:id>')
 def complete(id):
-  todos[id]['complete'] = True
-  return redirect('/')
+  return TodoController.complete(id)
 
 @app.route('/update/<int:id>', methods=['POST'])
 def update(id):
-  title = request.form.get('title')
-  todos[id]['title'] = title
-  return redirect('/')
+  return TodoController.update(id)
 
-  
+@app.route('/login')
+def login():
+  return UserController.login()
+
+@app.route('/register')
+def register():
+  return UserController.register()
+
+@app.route('/signup', methods=['POST'])
+def signup():
+  return UserController.signup()
+
+@app.route('/signin', methods=['POST'])
+def signin():
+  return UserController.signin()
+
+@app.route('/logout')
+def logout():
+  return UserController.logout()
+
+###### INICIALIZACAO ######
+with app.app_context():
+  db.create_all()
+
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8080)
+  port = int(os.environ.get('PORT', 5000))
+  app.run(host='0.0.0.0', port=port)

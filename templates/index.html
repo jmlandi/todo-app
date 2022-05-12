@@ -23,19 +23,18 @@
       <ul>
         {% for i in todos %}
           <li> 
-
               {% if i.complete == True %}
                 <p class="item-txt"><s> {{ i.title }} </s></p>
               {% else %}
-                <form action="/update/{{ loop.index0 }}" method="POST">
+                <form action="/update/{{ i.id }}" method="POST">
                   <input class="sul-text-field" type="text" name="title" value="{{ i.title }}">
                   <button class="sul-btn" type="submit">Edit</button>
                 </form> 
               {% endif %}
-            <a href="/delete/{{ loop.index0 }}">
+            <a href="/delete/{{ i.id }}">
                 <p class="item-icon">❌</p>            
               </a>
-              <a href="/complete/{{ loop.index0 }}">
+              <a href="/complete/{{ i.id }}">
                 <p class="item-icon">✅</p>
               </a>
           </li>

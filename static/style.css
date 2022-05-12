@@ -1,6 +1,6 @@
 * {
-  margin: 0px;
-  padding: 0ox;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 12px 0px;
+  margin: 12px 0;
 }
 
 .container form input {
@@ -28,24 +28,50 @@ body {
 }
 
 .container ul {
-  margin-top: 20px;
+  margin-top: 30px;
   list-style-type: none;
 }
 
 .container ul li {
-  font-size: 18px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
+  font-size: 22px;
 }
 
-.item-txt {
-  font-size: 18px;
-  margin-left: 5px;
-  margin-top: 20px;
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.item-icon {
-  margin-top: 18px;
+.messages {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.error {
+  background-color: #E74C3C;
+  color: #FFFFFF;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+}
+
+.success {
+  background-color: #2ECC71;
+  color: #FFFFFF;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+}
+
+.info {
+  background-color: #3498DB;
+  color: #FFFFFF;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-bottom: 10px;
 }
