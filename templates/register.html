@@ -11,13 +11,14 @@
 </head>
 <body class="dark-mode">
   <div class="sul-box-raised-2 container">
-    <h1>Login</h1>
-    <form class="form-login" action="/signin" method="POST">
+    <h1>Cadastrar</h1>
+    <form class="form-login" action="/signup" method="POST">
+      <input class="sul-text-field" type="text" name="name" placeholder="Nome">
       <input class="sul-text-field" type="email" name="email" placeholder="E-mail">
       <input class="sul-text-field" type="password" name="password" placeholder="Senha">
-      <button type="submit" class="sul-btn">Entrar</button>
+      <button type="submit" class="sul-btn">Cadastar</button>
     </form>
-    <a href="/register">Cadastrar</a>
+    <a href="/login" class="btn-log">Login</a>
   </div>
 
   {% with messages = get_flashed_messages(with_categories=True) %}
