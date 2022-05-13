@@ -81,3 +81,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.btn-log:hover {
+  color: #fff;
+}
